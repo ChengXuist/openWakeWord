@@ -673,7 +673,7 @@ if __name__ == '__main__':
                 output_dir=positive_train_output_dir, auto_reduce_batch_size=True,
                 file_names=[uuid.uuid4().hex + ".wav" for i in range(config["n_samples"])],
                 model="/content/piper-sample-generator/models/fr_FR-mls-medium.pt",
-                min_phoneme_count=155
+                min_phoneme_count=300
             )
             torch.cuda.empty_cache()
         else:
@@ -690,7 +690,7 @@ if __name__ == '__main__':
                              noise_scales=[1.0], noise_scale_ws=[1.0], length_scales=[0.75, 1.0, 1.25],
                              output_dir=positive_test_output_dir, auto_reduce_batch_size=True,
                              model="/content/piper-sample-generator/models/fr_FR-mls-medium.pt",
-                             min_phoneme_count=155)
+                             min_phoneme_count=300)
             torch.cuda.empty_cache()
         else:
             logging.warning(f"Skipping generation of positive clips testing, as ~{config['n_samples_val']} already exist")
@@ -713,7 +713,7 @@ if __name__ == '__main__':
                              noise_scales=[0.98], noise_scale_ws=[0.98], length_scales=[0.75, 1.0, 1.25],
                              output_dir=negative_train_output_dir, auto_reduce_batch_size=True,
                              file_names=[uuid.uuid4().hex + ".wav" for i in range(config["n_samples"])], model="/content/piper-sample-generator/models/fr_FR-mls-medium.pt",
-                             min_phoneme_count=155
+                             min_phoneme_count=300
                              )
             torch.cuda.empty_cache()
         else:
@@ -736,7 +736,7 @@ if __name__ == '__main__':
                              batch_size=config["tts_batch_size"]//7,
                              noise_scales=[1.0], noise_scale_ws=[1.0], length_scales=[0.75, 1.0, 1.25],
                              output_dir=negative_test_output_dir, auto_reduce_batch_size=True, model="/content/piper-sample-generator/models/fr_FR-mls-medium.pt",
-                             min_phoneme_count=155)
+                             min_phoneme_count=300)
             torch.cuda.empty_cache()
         else:
             logging.warning(f"Skipping generation of negative clips for testing, as ~{config['n_samples_val']} already exist")
